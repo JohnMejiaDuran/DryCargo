@@ -1,8 +1,10 @@
 import {StatusBar} from 'expo-status-bar'
-import {Text, View, Image} from 'react-native'
-import { Link } from 'expo-router'
+import {Text, View, Image, ScrollView, Stack} from 'react-native'
+import {Redirect, router} from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import {icons} from "../constants"
+import {icons} from "../constants/"
+import CustomButton from '../components/CustomButton'
+import FormField from '../components/FormField'
 
 
 
@@ -11,11 +13,26 @@ export default function App(){
     return(
 
         <SafeAreaView className="bg-primary h-full">
-        <View className="w-full justify-start items-center px-4 mt-20">
-            <Text className="text-4xl text-secondary-200 font-mblack ">DRYCARGO</Text>
-            <StatusBar style='light'/>
-            <Link href="/home">Go to Home</Link>
-        </View>
+            
+            <ScrollView contentContainerStyle={{height: '100%'}}>
+                <View className="w-full justify-center items-center h-[25vh] px-4 mt-20">
+                    <Image
+                        source={icons.logo}
+                        className="w-[100%] h-[150px]"
+                        resizeMode='contain'
+                    />
+                    <FormField />
+                    <CustomButton 
+                        title="Iniciar Sesión"
+                        handlePress={()=> router.push('/home')}
+                        containerStyles="w-full mt-7"
+                    />
+                </View>
+                <View>
+                    
+                </View>
+            </ScrollView>
+            <StatusBar backgroundColor='#8C4191' style='light'/>
         </SafeAreaView>
     );
 }
